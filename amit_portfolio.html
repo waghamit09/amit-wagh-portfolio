@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amit Wagh - Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Set up Tailwind CSS dark mode configuration before Tailwind initializes
+        tailwind.config = {
+            darkMode: 'class', // Enable dark mode based on 'dark' class on <html>
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Remixicon CDN for vector icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        /* Custom styles to ensure Poppins font is applied globally */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7faff;
+            /* Light background similar to the image */
+            overflow-x: hidden;
+            /* Prevent horizontal scroll on small screens due to design elements */
+        }
+
+        /* Dark mode body background */
+        html.dark body {
+            background-color: #1a202c;
+            /* Dark background for dark mode */
+            color: #e2e8f0;
+            /* Lighter text for dark mode */
+        }
+
+        /* Custom gradient for the hero section background - approximating the image */
+        .hero-gradient-bg {
+            background-image: radial-gradient(at 10% 50%, #e0e7ff 0%, transparent 50%),
+                radial-gradient(at 90% 10%, #dee7ff 0%, transparent 50%),
+                radial-gradient(at 50% 100%, #f0f2ff 0%, transparent 50%);
+            background-color: #f7faff;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            z-index: 0;
+        }
+
+        /* Dark mode hero gradient adjustment */
+        html.dark .hero-gradient-bg {
+            background-image: radial-gradient(at 10% 50%, #312e81 0%, transparent 50%),
+                radial-gradient(at 90% 10%, #4c1d95 0%, transparent 50%),
+                radial-gradient(at 50% 100%, #1f2937 0%, transparent 50%);
+            background-color: #1a202c;
+        }
+
+        /* Character container for circular cropping and shadow */
+        .character-container {
+            border-radius: 50%;
+            overflow: hidden;
+            /* Ensures image is clipped to circle */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background-color: #fcd34d;
+            /* Yellow background as seen in image */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        html.dark .character-container {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            background-color: #d97706;
+            /* Darker yellow for dark mode */
+        }
+
+        /* Image inside the character container */
+        .character-container img {
+            width: 100%;
+            /* Make image fill the container width */
+            height: 100%;
+            /* Make image fill the container height */
+            object-fit: cover;
+            /* Cover the container, cropping as necessary */
+            object-position: center;
+            /* Center the image within the container */
+        }
+
+        /* Animation for floating icons */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Specific delays for floating icons for varied animation */
+        .animate-float-delay-1 {
+            animation-delay: 0.5s;
+        }
+
+        .animate-float-delay-2 {
+            animation-delay: 1s;
+        }
+
+        .animate-float-delay-3 {
+            animation-delay: 1.5s;
+        }
+
+        .animate-float-delay-4 {
+            animation-delay: 2s;
+        }
+
+        /* Typing animation for the cursor */
+        .typing-cursor {
+            animation: blink-caret .75s step-end infinite;
+            font-weight: 700;
+            /* Bold cursor */
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Custom gradient for Instagram icon */
+        .instagram-gradient-bg {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+
+        /* Dark mode adjustments for specific elements */
+        html.dark .text-gray-800 {
+            color: #e2e8f0;
+        }
+
+        html.dark .text-gray-900 {
+            color: #f8fafc;
+        }
+
+        html.dark .text-gray-700 {
+            color: #cbd5e1;
+        }
+
+        html.dark .text-gray-600 {
+            color: #a0aec0;
+        }
+
+        html.dark .bg-white\/90 {
+            background-color: rgba(26, 32, 44, 0.9);
+        }
+
+        /* Darker nav background */
+        html.dark .shadow-sm {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark .text-indigo-600 {
+            color: #818cf8;
+        }
+
+        /* Lighter indigo for dark mode */
+        html.dark .hover\:text-indigo-600:hover {
+            color: #a78bfa;
+        }
+
+        html.dark .bg-indigo-600 {
+            background-color: #4f46e5;
+        }
+
+        /* Base indigo in dark mode */
+        html.dark .hover\:bg-indigo-700:hover {
+            background-color: #4338ca;
+        }
+
+        /* Darker hover for buttons */
+
+        /* About Card Specific Styles with Gradient and Dark Mode */
+        .about-card-gradient {
+            background-image: linear-gradient(to bottom right, #ffffff, #f0f2ff);
+            /* Very subtle light blue/gray gradient */
+        }
+
+        html.dark .about-card-gradient {
+            background-image: linear-gradient(to bottom right, #2d3748, #1a202c);
+            /* Darker, subtle gradient */
+        }
+
+        .about-card {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            /* Adjusted shadow for light mode */
+        }
+
+        html.dark .about-card {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+            /* Darker shadow for dark mode */
+        }
+
+        /* Dark mode text adjustments for about card content */
+        html.dark .about-card .text-gray-800 {
+            color: #e2e8f0;
+        }
+
+        html.dark .about-card .text-gray-600 {
+            color: #a0aec0;
+        }
+
+        html.dark .about-card .text-gray-700 {
+            color: #cbd5e1;
+        }
+
+        html.dark .text-purple-600 {
+            color: #a78bfa;
+        }
+
+        /* Lighter purple for dark mode buttons */
+        html.dark .hover\:bg-purple-700:hover {
+            background-color: #8b5cf6;
+        }
+
+        /* Custom styles for social icons hover effect with background */
+        .social-icon-box {
+            @apply flex items-center justify-center w-12 h-12 rounded-full shadow-lg text-white transition duration-300 transform hover:scale-110;
+        }
+
+        /* Specific colors for social icons */
+        .social-icon-box.linkedin {
+            @apply bg-blue-600;
+        }
+
+        .social-icon-box.github {
+            @apply bg-gray-800;
+        }
+
+        .social-icon-box.twitter {
+            @apply bg-blue-400;
+        }
+
+        .social-icon-box.instagram {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+
+        /* Project Card Styles */
+        .project-card {
+            @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden flex flex-col transition-all duration-300 ease-in-out cursor-pointer;
+            /* Added cursor-pointer */
+            @apply hover:scale-[1.02] hover:shadow-2xl;
+            /* Slightly less aggressive scale, more pronounced shadow */
+        }
+
+        html.dark .project-card {
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.4), 0 4px 8px -2px rgba(0, 0, 0, 0.2);
+            /* Darker, more prominent shadow */
+        }
+
+        .project-image-container {
+            @apply w-full h-48 sm:h-56 md:h-64 lg:h-56 xl:h-64 overflow-hidden;
+            /* Fixed height for image container */
+        }
+
+        .project-image-container img {
+            @apply w-full h-full object-cover transition-transform duration-300 ease-in-out;
+
+            /* Optional: subtle zoom on hover for image */
+            .project-card:hover & {
+                transform: scale(1.05);
+            }
+        }
+
+        .project-content {
+            @apply p-6 flex flex-col flex-grow;
+            /* flex-grow to ensure content fills space */
+        }
+
+        .project-link-button {
+            @apply inline-flex items-center justify-center w-full mt-4 px-5 py-2 rounded-full bg-indigo-600 text-white font-semibold shadow-md;
+            @apply hover:bg-indigo-700 transition duration-300 transform hover:-translate-y-0.5;
+            @apply dark:bg-indigo-700 dark:hover:bg-indigo-800;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800 antialiased">
+
+    <!-- Header Section - Navbar -->
+    <header
+        class="relative z-20 w-full py-4 px-4 md:px-8 bg-white/90 backdrop-blur-sm shadow-sm dark:bg-gray-900/90 dark:shadow-md">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo/Name on the left -->
+            <div class="flex items-center space-x-2">
+                <div class="bg-indigo-600 text-white font-bold text-lg p-2 rounded-lg shadow-md">AMW</div>
+                <span class="text-xl font-semibold text-gray-900 hidden sm:block dark:text-white tracking-tight">Amit
+                    Wagh</span>
+            </div>
+
+            <!-- Navigation Links - Hidden on small screens, shown on medium and larger -->
+            <nav class="hidden md:flex space-x-8 lg:space-x-12">
+                <a href="#home"
+                    class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300 dark:text-gray-300 dark:hover:text-indigo-400 tracking-tight">Home</a>
+                <a href="#about"
+                    class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300 dark:text-gray-300 dark:hover:text-indigo-400 tracking-tight">About</a>
+                <a href="#projects"
+                    class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300 dark:text-gray-300 dark:hover:text-indigo-400 tracking-tight">Projects</a>
+            </nav>
+
+            <!-- Mobile Menu Button (Hamburger) and Theme Toggle -->
+            <div class="flex items-center space-x-4">
+                <!-- Theme Toggle Icon Button -->
+                <button id="theme-toggle" type="button"
+                    class="text-gray-600 dark:text-yellow-300 bg-gray-200 dark:bg-gray-800 p-2 rounded-full transition duration-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <!-- Sun Icon (for Light Mode) -->
+                    <i id="sun-icon" class="ri-sun-line text-xl h-6 w-6 hidden"></i>
+                    <!-- Moon Icon (for Dark Mode) -->
+                    <i id="moon-icon" class="ri-moon-line text-xl h-6 w-6 hidden"></i>
+                </button>
+
+                <!-- Hamburger Menu Icon -->
+                <button id="mobile-menu-button" type="button"
+                    class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-indigo-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 dark:text-gray-400 dark:hover:text-indigo-300 dark:hover:bg-gray-700"
+                    aria-controls="mobile-menu" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <!-- Icon when menu is closed. -->
+                    <i class="ri-menu-line block h-6 w-6" aria-hidden="true"></i>
+                    <!-- Icon when menu is open. -->
+                    <i class="ri-close-line hidden h-6 w-6" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div class="md:hidden hidden bg-white shadow-lg py-2 mt-2 rounded-lg dark:bg-gray-800 dark:shadow-xl"
+            id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home"
+                    class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium transition duration-300 dark:text-gray-300 dark:hover:bg-indigo-900 dark:hover:text-indigo-300">Home</a>
+                <a href="#about"
+                    class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium transition duration-300 dark:text-gray-300 dark:hover:bg-indigo-900 dark:hover:text-indigo-300">About</a>
+                <a href="#projects"
+                    class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium transition duration-300 dark:text-gray-300 dark:hover:bg-indigo-900 dark:hover:text-indigo-300">Projects</a>
+                <a href="#experience"
+                    class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium transition duration-300 dark:text-gray-300 dark:hover:bg-indigo-900 dark:hover:text-indigo-300">Experience</a>
+                <a href="#contact"
+                    class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 block px-3 py-2 rounded-md text-base font-medium transition duration-300 dark:text-gray-300 dark:hover:bg-indigo-900 dark:hover:text-indigo-300">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient-bg min-h-screen flex items-center justify-center px-4 md:px-8 relative">
+        <div
+            class="max-w-7xl mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-between gap-12 lg:gap-24">
+            <!-- Left Content - Text and Social Icons -->
+            <div class="flex-1 text-center md:text-left z-10 p-4">
+                <p
+                    class="text-lg text-orange-500 mb-2 flex items-center justify-center md:justify-start tracking-tight">
+                    <span class="mr-2">👋</span> Hey
+                </p>
+                <h1
+                    class="text-5xl lg:text-6xl xl:text-7xl font-extrabold text-gray-900 dark:text-white leading-tight mb-4 tracking-tight">
+                    I'm Amit Wagh
+                </h1>
+                <h2 class="text-3xl lg:text-4xl font-semibold text-indigo-700 dark:text-indigo-300 mb-6 tracking-tight">
+                    <span id="typing-text"></span><span class="typing-cursor">|</span>
+                </h2>
+                <p
+                    class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed max-w-lg mb-8 mx-auto md:mx-0 tracking-normal">
+                    I focus on developing user-friendly web applications that meet the client's
+                    requirements, with attention to detail, scalability, and performance.
+                </p>
+
+                <!-- Social Icons - Now in one colorful row with hover animations -->
+                <div class="flex flex-row space-x-4 mb-8 items-center justify-center md:justify-start">
+                    <!-- LinkedIn -->
+                    <a href="https://linkedin.com" target="_blank" class="social-icon-box linkedin">
+                        <i class="ri-linkedin-fill text-xl"></i>
+                    </a>
+                    <!-- GitHub -->
+                    <a href="https://github.com" target="_blank" class="social-icon-box github">
+                        <i class="ri-github-fill text-xl"></i>
+                    </a>
+                    <!-- Twitter -->
+                    <a href="https://twitter.com" target="_blank" class="social-icon-box twitter">
+                        <i class="ri-twitter-fill text-xl"></i>
+                    </a>
+                </div>
+
+                <a href="#about"
+                    class="inline-flex items-center bg-indigo-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-indigo-700 transition duration-300 transform hover:-translate-y-1 dark:bg-indigo-700 dark:hover:bg-indigo-800 tracking-tight">
+                    About Me
+                    <i class="ri-arrow-right-line ml-2"></i>
+                </a>
+            </div>
+
+            <!-- Right Content - Character Illustration and Floating Icons -->
+            <div class="flex-1 relative flex justify-center items-center p-4">
+                <!-- Character Illustration -->
+                <div class="character-container w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+                    <!-- This placeholder image mimics a cartoon character with a wave gesture -->
+                    <img src="https://avatars.githubusercontent.com/u/193271866?v=4"
+                        alt="Cartoon Character Illustration" class="w-full h-full object-cover">
+                </div>
+
+                <!-- Floating Icons around the character -->
+                <!-- Example: React/JS Icon -->
+                <img src="https://placehold.co/60x60/38bdf8/ffffff?text=React" alt="React Icon"
+                    class="absolute top-10 left-0 w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 animate-float">
+                <!-- Example: HTML5 Icon -->
+                <img src="https://placehold.co/60x60/f97316/ffffff?text=HTML5" alt="HTML5 Icon"
+                    class="absolute bottom-10 right-0 w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 animate-float animate-float-delay-1">
+                <!-- Example: Node.js Icon -->
+                <img src="https://placehold.co/60x60/4ade80/ffffff?text=Node" alt="Node.js Icon"
+                    class="absolute top-1/4 -right-8 w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 animate-float animate-float-delay-2">
+                <!-- Example: Figma/Design Icon -->
+                <img src="https://placehold.co/60x60/8b5cf6/ffffff?text=Figma" alt="Figma Icon"
+                    class="absolute bottom-1/4 -left-8 w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 animate-float animate-float-delay-3">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-16 px-4 md:px-8 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto">
+            <h2
+                class="text-4xl lg:text-5xl font-extrabold text-center text-gray-900 dark:text-white mb-12 tracking-tight">
+                About Me</h2>
+
+            <div
+                class="flex flex-col md:flex-row items-center md:items-center gap-12 lg:gap-20 rounded-2xl shadow-xl about-card about-card-gradient transition-transform duration-500 hover:scale-[1.005] p-8 md:p-12">
+                <!-- Left: Image -->
+                <div
+                    class="flex-shrink-0 w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden shadow-2xl relative border-4 border-indigo-600 dark:border-indigo-400 transform transition-transform duration-300 hover:scale-105">
+                    <!-- Image provided in the prompt - removed grayscale filter -->
+                    <img src="https://avatars.githubusercontent.com/u/193271866?v=4"
+                        onerror="this.onerror=null;this.src='https://placehold.co/400x400/D1D5DB/6B7280?text=Jigar%20Sable';"
+                        alt="Jigar Sable" class="w-full h-full object-cover">
+                    <!-- Optional: Add a subtle overlay or border for visual effect -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/10 to-transparent"></div>
+                </div>
+
+                <!-- Right: Text Content -->
+                <div class="flex-1 text-center md:text-left">
+                    <h3 class="text-4xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">Amit Wagh</h3>
+                    <p class="text-xl font-medium text-indigo-700 dark:text-indigo-300 mb-6 tracking-normal">Full Stack
+                        Developer</p>
+                    <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-8 tracking-normal">
+                        Hey there! I'm Amit Wagh, a budding Full-Stack Web Developer currently pursuing B.Tech in Computer Science and Engineering at Sanjivani College of Engineering.
+I'm passionate about building modern, responsive websites and full-stack web applications.
+Since the beginning of my college journey, I've been exploring web technologies and turning ideas into working projects.
+
+                    </p>
+
+                    <div
+                        class="flex flex-col sm:flex-row justify-center md:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-8">
+                         <!-- Resume Button -->
+                         <a href="ami_resume.pdf"
+                            class="inline-flex items-center bg-purple-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-purple-700 transition duration-300 transform hover:-translate-y-1 dark:bg-purple-700 dark:hover:bg-purple-800 tracking-normal">
+                            Resume
+                            <i class="ri-file-download-line ml-2"></i>
+                        </a>
+                         <!-- Book a 1:1 call Button  -->
+                        <!-- <a href="#" target="_blank" -->
+                            <!-- class="inline-flex items-center text-purple-600 dark:text-purple-400 font-semibold py-3 px-6 rounded-full border-2 border-purple-600 dark:border-purple-400 hover:bg-purple-50 dark:hover:bg-gray-700 transition duration-300 transform hover:-translate-y-1 tracking-normal"> -->
+                            <!-- Book a 1:1 call -->
+                            <!-- <i class="ri-external-link-line ml-2"></i> -->
+                        <!-- </a> -->
+                    </div> 
+                     <!-- "I build stuff" text -->
+                    <!-- <p
+                        class="text-xl font-semibold text-gray-900 dark:text-white mt-8 mb-4 text-center md:text-left tracking-normal">
+                        &lt; I build stuff /&gt;
+                    </p> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects"
+        class="py-16 px-4 md:px-8 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto">
+            <h2
+                class="text-4xl lg:text-5xl font-extrabold text-center text-gray-900 dark:text-white mb-14 tracking-tight drop-shadow-lg">
+                My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Project Card 1 -->
+                <a href="https://github.com/your-username/project-web-app" target="_blank"
+                    class="group relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden flex flex-col transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700">
+                    <div class="overflow-hidden">
+                        <img src="https://placehold.co/600x400/818CF8/ffffff?text=Web+Application"
+                            onerror="this.onerror=null;this.src='https://placehold.co/600x400/D1D5DB/6B7280?text=Image+Error';"
+                            alt="Web Application Project"
+                            class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105 rounded-t-2xl" />
+                    </div>
+                    <div class="flex flex-col flex-1 p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">Satvik Trading Company
+                        </h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-6 flex-grow">
+                            Developed a responsive and interactive web application using cutting-edge front-end
+                            frameworks and robust back-end services.
+                        </p>
+                        <span
+                            class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:underline transition">
+                            View on GitHub <i class="ri-github-fill text-xl"></i>
+                        </span>
+                    </div>
+                    <span
+                        class="absolute top-4 right-4 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 px-3 py-1 rounded-full text-xs font-semibold shadow">Web</span>
+                </a>
+                <!-- Project Card 2 -->
+                <a href="https://github.com/your-username/project-mobile-app" target="_blank"
+                    class="group relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden flex flex-col transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700">
+                    <div class="overflow-hidden">
+                        <img src="https://placehold.co/600x400/34D399/ffffff?text=Mobile+Application"
+                            onerror="this.onerror=null;this.src='https://placehold.co/600x400/D1D5DB/6B7280?text=Image+Error';"
+                            alt="Mobile Application Project"
+                            class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105 rounded-t-2xl" />
+                    </div>
+                    <div class="flex flex-col flex-1 p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">Shivsar Exports </h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-6 flex-grow">
+                            Designed and built a cross-platform mobile application focusing on intuitive UI/UX and
+                            seamless performance.
+                        </p>
+                        <span
+                            class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:underline transition">
+                            View on GitHub <i class="ri-github-fill text-xl"></i>
+                        </span>
+                    </div>
+                    <span
+                        class="absolute top-4 right-4 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-200 px-3 py-1 rounded-full text-xs font-semibold shadow">Mobile</span>
+                </a>
+                <!-- Project Card 3 -->
+                <a href="https://github.com/your-username/project-ui-ux" target="_blank"
+                    class="group relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden flex flex-col transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl border border-gray-200 dark:border-gray-700">
+                    <div class="overflow-hidden">
+                        <img src="https://placehold.co/600x400/EC4899/ffffff?text=UI/UX+Design"
+                            onerror="this.onerror=null;this.src='https://placehold.co/600x400/D1D5DB/6B7280?text=Image+Error';"
+                            alt="UI/UX Design Project"
+                            class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105 rounded-t-2xl" />
+                    </div>
+                    <div class="flex flex-col flex-1 p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">web for sanjivani</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-6 flex-grow">
+                            A portfolio of design prototypes and front-end implementations, emphasizing user-centric
+                            design principles.
+                        </p>
+                        <span
+                            class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:underline transition">
+                            View on GitHub <i class="ri-github-fill text-xl"></i>
+                        </span>
+                    </div>
+                    <span
+                        class="absolute top-4 right-4 bg-pink-100 dark:bg-pink-900 text-pink-700 dark:text-pink-200 px-3 py-1 rounded-full text-xs font-semibold shadow">UI/UX</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // JavaScript for Mobile Navbar Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            // Toggle SVG icons for hamburger/close
+            const openIcon = mobileMenuButton.querySelector('.ri-menu-line');
+            const closeIcon = mobileMenuButton.querySelector('.ri-close-line');
+            openIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                // Ensure icons revert to hamburger
+                mobileMenuButton.querySelector('.ri-menu-line').classList.remove('hidden');
+                mobileMenuButton.querySelector('.ri-close-line').classList.add('hidden');
+            });
+        });
+
+        // Typing Animation for "I am into App Development |"
+        const typingTextElement = document.getElementById('typing-text');
+        const phrases = ["App Development", "Web Development", "UI/UX Design", "Software Engineering"];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 100; // milliseconds per character
+        const deletingSpeed = 50; // milliseconds per character
+        const pauseBeforeDelete = 1500; // milliseconds to wait before deleting
+        const pauseBeforeType = 500; // milliseconds to wait before typing next phrase
+
+        function typeWriter() {
+            const currentPhrase = phrases[phraseIndex];
+            if (isDeleting) {
+                typingTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let currentSpeed = isDeleting ? deletingSpeed : typingSpeed;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                currentSpeed = pauseBeforeDelete;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                currentSpeed = pauseBeforeType;
+            }
+
+            setTimeout(typeWriter, currentSpeed);
+        }
+
+        // Dark/Light Mode Toggle Functionality
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        const htmlElement = document.documentElement; // The <html> tag
+
+        // Function to set the theme
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                htmlElement.classList.add('dark');
+                sunIcon.classList.add('hidden'); // Hide sun icon in dark mode
+                moonIcon.classList.remove('hidden'); // Show moon icon in dark mode
+                localStorage.setItem('theme', 'dark');
+            } else {
+                htmlElement.classList.remove('dark');
+                sunIcon.classList.remove('hidden'); // Show sun icon in light mode
+                moonIcon.classList.add('hidden'); // Hide moon icon in light mode
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Check for saved theme preference on page load
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // If no preference saved, check OS preference
+            setTheme('dark');
+        } else {
+            // Default to light mode
+            setTheme('light');
+        }
+
+        // Toggle theme on button click
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                setTheme('light');
+            } else {
+                setTheme('dark');
+            }
+        });
+
+
+        // Start the typing animation when the page loads
+        document.addEventListener('DOMContentLoaded', typeWriter);
+    </script>
+</body>
+
+</html>
